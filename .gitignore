@@ -8,4 +8,6 @@
 ############################  JENKINS ##################################
 jenkins/certs/*
 jenkins/data/*
+jenkins/secret.key
+jenkins/users/*
 

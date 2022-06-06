@@ -11,13 +11,4 @@ RUN apt-get update && apt-get install -y docker-ce-cli
 
 USER jenkins
 
-RUN jenkins-plugin-cli --plugins "blueocean:1.25.5 docker-workflow:1.28"
-
-#RUN sh UPDATE_LIST=$( java -jar /root/jenkins-cli.jar -s http://127.0.0.1:8080/ list-plugins | grep -e ')$' | awk '{ print $1 }' ); 
-#        if [ ! -z "${UPDATE_LIST}" ]; then 
-#            echo Updating Jenkins Plugins: ${UPDATE_LIST}; 
-#            java -jar /root/jenkins-cli.jar -s http://127.0.0.1:8080/ install-plugin ${UPDATE_LIST};
-#            java -jar /root/jenkins-cli.jar -s http://127.0.0.1:8080/ safe-restart;
-#        fi
-
-#RUN curl -s -L http://updates.jenkins-ci.org/update-center.json | sed '1d;$d' | curl -s -X POST -H 'Accept: application/json' -d @- http://localhost:8080/updateCenter/byId/default/postBack
+RUN jenkins-plugin-cli --plugins "blueocean:1.25.5 jdk-tool:1.5 command-launcher:84.v4a_97f2027398 sshd:3.237.v883d165a_c1d3 credentials:1129.vef26f5df883c github:1.34.3 docker-workflow:1.28 kubernetes:3600.v144b_cd192ca_a_ terraform:1.0.10 sonar:2.14"
