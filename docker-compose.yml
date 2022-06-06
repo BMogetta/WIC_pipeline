@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+
+  jenkins:
+    build: ./jenkins
+    restart: unless-stopped
+    container_name: jenkins-blueocean
+    #privileged: true
+    volumes:
+      - ./jenkins/certs:/certs/client:ro
+      - ./jenkins/data:/var/jenkins_home
+    environment:
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+    networks:
+      - jenkins
+
+
+volumes:
+  jenkins: {}
+
+networks:
+  jenkins:
+   
