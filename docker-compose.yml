@@ -10,20 +10,29 @@ services:
     volumes:
       - ./jenkins/certs:/certs/client:ro
       - ./jenkins/data:/var/jenkins_home
+      - ./var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DOCKER_HOST=tcp://docker:2376
-      - DOCKER_CERT_PATH=/certs/client
-      - DOCKER_TLS_VERIFY=1
+      JAVA_OPTS: "-Djava.awt.headless=true -Dmail.smtp.starttls.enable=true"
+      SONARQUBE_HOST: sonarqube
+      MY_NAME: "Bruno_Mogetta"
+      DOCKER_HOST: tcp://docker:2376
+      DOCKER_CERT: PATH=/certs/client
+      DOCKER_TLS_VERIFY: 1
     ports:
       - '8080:8080'
       - '50000:50000'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '2G'
     networks:
-      - jenkins
+      - WIC_devops_net
 
 
 volumes:
   jenkins: {}
+  sonarqube: {}
 
 networks:
-  jenkins:
-   
+  WIC_devops: {}

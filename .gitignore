@@ -1,13 +1,12 @@
 ############################  WHOISCLICKING ##################################
-.env
+/.env
 .vscode
 
 
 
 
 ############################  JENKINS ##################################
-jenkins/certs/*
-jenkins/data/*
-jenkins/secret.key
-jenkins/users/*
+/jenkins/certs/*
+/jenkins/data/*
+
 
