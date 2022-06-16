@@ -12,15 +12,15 @@ services:
       - ./jenkins/data:/var/jenkins_home
       - ./var/run/docker.sock:/var/run/docker.sock
     environment:
-      JAVA_OPTS: "-Djava.awt.headless=true -Dmail.smtp.starttls.enable=true"
-      SONARQUBE_HOST: sonarqube
-      MY_NAME: "Bruno_Mogetta"
-      DOCKER_HOST: tcp://docker:2376
-      DOCKER_CERT: PATH=/certs/client
-      DOCKER_TLS_VERIFY: 1
+      JAVA_OPTS: ${JAVA_OPTS}
+      MY_NAME: ${MY_NAME}
+      DOCKER_HOST: ${DOCKER_HOST}
+      DOCKER_CERT: ${DOCKER_CERT}
+      DOCKER_TLS_VERIFY: ${DOCKER_TLS_VERIFY}
     ports:
       - '8080:8080'
       - '50000:50000'
+      - "3375:2375"
     deploy:
       resources:
         limits:
@@ -35,4 +35,4 @@ volumes:
   sonarqube: {}
 
 networks:
-  WIC_devops: {}
+  WIC_devops_net: {}
